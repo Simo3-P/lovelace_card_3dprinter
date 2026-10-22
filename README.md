@@ -1,3 +1,8 @@
+Project Notice: 
+Since the original repository hasn't received updates for several months, I have decided to create this active fork to continue development, fix bugs, and publish new releases.
+• Original project: https://github.com/gilbertorconde/lovelace-3d-printer-card.git
+• New releases and updates: All future development will continue on this new repository.
+
 # Lovelace 3D Printer Card for Home Assistant
 
 `lovelace-3d-printer-card` is a custom Lovelace card for monitoring and controlling **Moonraker/Klipper** 3D printers from Home Assistant. Single-file, zero dependencies, no build step.

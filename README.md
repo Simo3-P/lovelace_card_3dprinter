@@ -266,6 +266,28 @@ cameras:
 | `180` | Flip upside down |
 | `270` | Rotate 90° counter-clockwise |
 
+### Camera not available
+
+If Moonraker does not expose your printer camera to Home Assistant, add the official Home Assistant integration for your printer manufacturer (for example, the Creality integration for Creality printers or the Bambu Lab integration for Bambu Lab printers). Once that integration provides a camera entity in Home Assistant, this card can automatically discover and display it.
+
+### Layer count not shown
+
+The card can display the current and total layer counts only when those values are included in the printer's G-code. If the layer count is missing, add the following commands to your slicer's G-code settings:
+
+**Machine start G-code:**
+
+```gcode
+SET_PRINT_STATS_INFO TOTAL_LAYER=[total_layer_count]
+```
+
+**Layer change G-code:**
+
+```gcode
+SET_PRINT_STATS_INFO CURRENT_LAYER={layer_num + 1}
+```
+
+The placeholders shown above must match the syntax supported by your slicer.
+
 ---
 
 ## Contributing — Entity Mappings

@@ -1,9 +1,7 @@
-Project Notice: 
+# Lovelace 3D Printer Card for Home Assistant by gilbertorconde
+
 Since the original repository hasn't received updates for several months, I have decided to create this active fork to continue development, fix bugs, and publish new releases.
 • Original project: https://github.com/gilbertorconde/lovelace-3d-printer-card.git
-• New releases and updates: All future development will continue on this new repository.
-
-# Lovelace 3D Printer Card for Home Assistant
 
 `lovelace-3d-printer-card` is a custom Lovelace card for monitoring and controlling **Moonraker/Klipper** 3D printers from Home Assistant. Single-file, zero dependencies, no build step.
 
@@ -76,6 +74,7 @@ Key features at a glance:
    - `/local/lovelace-3d-printer-card/entities/en_generic.js`
    - `/local/lovelace-3d-printer-card/entities/de_generic.js`
    - `/local/lovelace-3d-printer-card/entities/de_bambu_generic.js`
+   - `/local/lovelace-3d-printer-card/entities/it_bambu_generic.js`
    Add each entity mapping file you use; see the `entities/` folder for available options.
 
 ### Add the card to your dashboard
@@ -120,8 +119,16 @@ name: Bambu P1S
 base_entity: x1c_myprinter
 entity_mappings: de_bambu_generic
 ```
+**BambuLab with Italian HA** — use `it_bambu_generic` when the official Bambu Lab integration exposes Italian entity IDs:
 
-**Check the `entities/` folder** in the repo to see which mapping files are available (e.g. `en_generic.js`, `de_generic.js`, `de_bambu_generic.js`). Use the filename without `.js` as the value.
+```yaml
+type: custom:lovelace-3d-printer-card
+name: Bambu A1 Mini
+base_entity: a1_mini
+entity_mappings: it_bambu_generic
+```
+
+**Check the `entities/` folder** in the repo to see which mapping files are available (e.g. `en_generic.js`, `de_generic.js`, `de_bambu_generic.js`, `it_bambu_generic.js`). Use the filename without `.js` as the value.
 
 **With a smart plug power button:**
 
@@ -271,6 +278,8 @@ cameras:
 | `180` | Flip upside down |
 | `270` | Rotate 90° counter-clockwise |
 
+## Some common issues
+
 ### Camera not available
 
 If Moonraker does not expose your printer camera to Home Assistant, add the official Home Assistant integration for your printer manufacturer (for example, the Creality integration for Creality printers or the Bambu Lab integration for Bambu Lab printers). Once that integration provides a camera entity in Home Assistant, this card can automatically discover and display it.
@@ -306,12 +315,14 @@ The card relies on entity mapping files to discover printer entities and transla
 - `en_generic.js` — Moonraker/Klipper, English (default)
 - `de_generic.js` — Moonraker/Klipper, German (includes `verbleibende_zeit` for ETA)
 - `de_bambu_generic.js` — BambuLab (ha-bambulab), German — use when HA is set to German and the BambuLab integration uses translated entity names (e.g. `druckfortschritt`, `verbleibende_zeit`, `druckbetttemperatur`)
+- `it_bambu_generic.js` — BambuLab (ha-bambulab), Italian — maps the Italian entity IDs used by the official Bambu Lab integration
 
 ### How to contribute
 
 1. Add a new JS module in `entities/` following the naming `{language}_{printer}.js`. Examples of files you could add:
    - `en_bambu_p2p.js` — Bambu P2P/P2S, English
    - `de_bambu_p2p.js` — Bambu P2P/P2S, German
+   - `it_bambu_generic.js` — BambuLab A1 Mini, Italian
    - `de_voron_24.js` — Voron 2.4, German
 
 2. Copy `en_generic.js` as a starting point (use `export default { ... }`), then add or adjust the suffixes for your integration's entity IDs (e.g. BambuLab uses `verbleibende_zeit` for ETA in German).

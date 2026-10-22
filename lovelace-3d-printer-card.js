@@ -1893,6 +1893,7 @@ class PrinterCard3D extends HTMLElement {
 .sheet-close:hover { color:var(--primary-text-color); background:var(--chip-bg); }
 .sheet-scroll { flex:1; min-height:0; overflow-y:auto; padding-bottom:20px; }
 .sheet[data-sheet="misc"] { max-height:55vh; }
+.sheet[data-sheet="misc"] .sheet-scroll { scrollbar-gutter:stable; padding-right:8px; }
 
 /* ── Camera views ── */
 .camera-views { display:flex; flex-direction:column; gap:12px; padding-top:8px; }
